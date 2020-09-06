@@ -7,6 +7,12 @@ use Illuminate\Http\Request;
 
 class AnswersController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function store($questionId)
     {
         $question = Question::published()->findOrFail($questionId);
@@ -20,7 +26,7 @@ class AnswersController extends Controller
             'content' => request('content')
         ]);
 
-        return response()->json([],201);
+        return back();
 
     }
 }
