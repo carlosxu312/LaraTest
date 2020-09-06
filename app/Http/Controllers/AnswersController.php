@@ -11,8 +11,12 @@ class AnswersController extends Controller
     {
         $question = Question::published()->findOrFail($questionId);
 
+        $this->validate(request(), [
+            'content' => 'required'
+        ]);
+
         $question->answers()->create([
-            'user_id' => request('user_id'),
+            'user_id' => auth()->id(),
             'content' => request('content')
         ]);
 
