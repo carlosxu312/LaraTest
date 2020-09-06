@@ -15,8 +15,8 @@ class QuestionTest extends TestCase
     /** @test */
     public function a_question_has_many_answers()
     {
-        $question = factory(Question::class)->create();
-        factory(Answer::class)->create(['question_id' => $question->id]);
+        $question = create(Question::class);;
+        create(Answer::class, ['question_id' => $question->id]);
         $this->assertTrue(true);
         $this->assertInstanceOf('Illuminate\Database\Eloquent\Relations\HasMany', $question->answers());
     }
